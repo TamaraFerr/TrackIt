@@ -1,17 +1,14 @@
-import Cadastro from "./pages/Cadastro/Cadastro"
 import Login from "./pages/Login/Login"
-import Habitos from "./pages/Habitos"
-import Hoje from "./pages/Hoje"
-import Historico from "./pages/Historico"
-import NavBar from "./components/NavBar"
+import Cadastro from "./pages/Cadastro/Cadastro"
+import Hoje from "./pages/Hoje/Hoje"
+import Habitos from "./pages/Habitos/Habitos"
+import Historico from "./pages/Historico/Historico"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import "./styles/style.css"
  
 function App() {
   return (
     <BrowserRouter>
-
-      <NavBar />
-
       <Routes>
         <Route path="/" element={<Login />}/>
         <Route path="/cadastro" element={<Cadastro />}/>

@@ -1,0 +1,51 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 303px;
+    margin: 0 auto;
+}
+
+.container >a{
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #52b6ff;
+    text-decoration-line: underline;
+    text-align: center;
+}
+
+.trackit-logo{
+    margin-top: 68px;
+    margin-bottom: 33px;
+}
+
+.login{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.login > input{
+    height: 45px;
+    font-weight: 400;
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 20px;
+    border: 1px solid #d4d4d4;
+    border-radius: 5px;
+    margin-bottom: 6px;
+}
+
+.botao{
+    height: 45px;
+    background-color: #52b6ff;
+    font-size: 21px;
+    font-weight: 400;
+    font-family: "Lexend Deca", sans-serif;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+
