@@ -1,30 +1,78 @@
-import { Link } from "react-router-dom"
-import Trackit from "../../assets/Trackit.png"
+import axios from "axios"
+import { useContext, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { BASE_URL } from "../../constants/url"
+import {PageContainer, FormContainer, Button, Inputs, Links} from "./Style"
+import { ThreeDots } from "react-loader-spinner" 
+import UserContext from "../../context/UserContext"
+import TrackIt from "../../assets/TrackIt.png"
 
 export default function Login(){
-    return(
-        <div className="container">
-            <img src={Trackit} alt="" className="trackit-logo"/>
+    const [form, setForm] = useState({email:"", password:""})
+    const [disabled, setDisabled] = useState(false)
+    const navigate = useNavigate()
+    const {setUser} = useContext(UserContext)
 
-            <div className="login">
-                <input 
-                    placeholder="email"
-                    type="email"
-                    required
+    function handleForm(e) {
+        setForm({...form, [e.target.name]: e.target.value})
+    }
+
+    function LoadPage(e) {
+        e.preventDefault()
+        setDisabled(true)
+        console.log(disabled)
+
+        axios
+            .post(`${BASE_URL}/auth/login`, form)
+            .then((res) => {    
+                console.log(res.data)
+                window.localStorage.setItem("token", res.data.token)
+                setUser(res.data)
+                navigate(`/hoje`)
+            })
+            .catch((err) => 
+                alert(err.response.data.message),
+                setDisabled(false))
+        
+    }
+
+    return (
+        <PageContainer>
+
+            <img src={TrackIt} alt="trackit-logo"/> 
+
+            <FormContainer onSubmit={LoadPage}>
+                <Inputs 
+                placeholder="email" 
+                data-test="email-input"
+                name="email"
+                value={form.email}
+                onChange={handleForm}
+                required
+                disabled={disabled}
                 />
 
-                <input 
-                    placeholder="senha"
-                    type="password"
-                    required
+                <Inputs 
+                placeholder="senha" 
+                data-test="password-input" 
+                type="password"
+                name="password"
+                value={form.password}
+                onChange={handleForm}
+                required
+                disabled={disabled}
                 />
 
-                <button className="botao">Entrar</button>
-            </div>
+                <Button data-test="login-btn" type="submit" disabled={disabled}>
+                    {disabled ? <ThreeDots type="ThreeDots" color="#FFFFFF" height={20} width={40} /> : "Entrar"}
+                </Button> 
 
-            <Link to={"/cadastro"}>
-                <p>Não tem uma conta? Cadastre-se!</p>
+            </FormContainer>
+
+            <Link to={`/cadastro`}>
+                <Links data-test="signup-link">Não tem uma conta? Cadastre-se!</Links>
             </Link>
-        </div>
+
+        </PageContainer>
     )
 }

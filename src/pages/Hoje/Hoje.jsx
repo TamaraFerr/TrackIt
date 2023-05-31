@@ -1,29 +1,40 @@
-
+import NavBarr from "../../components/NavBar/NavBar"
+import Footer from "../../components/Footer/Footer"
+import {Container, TodayContainer, Texts, HabbitRecords, ProgressHabbit, Sequence, Record, TodayRecords, HabbitRecords2} from "./Style"
+import {BsFillCheckSquareFill} from "react-icons/bs"
 
 export default function Hoje(){
     return (
-        <>
-            <div className="top-barr">
-                <img src="" alt="" />
-                <img src="" alt="" />
-            </div>
+        <Container>
+            <NavBarr />
 
-            <div className="body">
-                <div className="adiciona-habitos">
-                    <h1>Meus hábitos</h1>
-                    <button>+</button>
-                </div>
+            <TodayContainer>
+                <ProgressHabbit>
+                    <p data-test="today-counter">Nenhum hábito concluído ainda</p>
+                </ProgressHabbit>
 
-                <h2>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</h2>
+                <TodayRecords>
+                    <HabbitRecords data-test="today-habit-container">
+                        <Texts>
+                            <h2 data-test="today-habit-name">Hábito criado agora</h2>
+                            <p data-test="today-habit-sequence">Sequência atual: <Sequence>5 dias</Sequence></p>
+                            <p data-test="today-habit-record">Seu recorde: <Record>5 dias</Record></p>
+                        </Texts>
+                        <BsFillCheckSquareFill data-test="today-habit-check-btn"/>
+                    </HabbitRecords>
 
-            </div>
+                    <HabbitRecords2 data-test="today-habit-container">
+                        <Texts>
+                            <h2 data-test="today-habit-name">Hábito criado agora</h2>
+                            <p data-test="today-habit-sequence">Sequência atual: <span>5 dias</span></p>
+                            <p data-test="today-habit-record">Seu recorde: <span>4 dias</span></p>
+                        </Texts>
+                        <BsFillCheckSquareFill data-test="today-habit-check-btn"/>
+                    </HabbitRecords2>
+                </TodayRecords>
+            </TodayContainer>
 
-            <div className="footer">
-                <div className="conteudo">
-                    <p>Hábitos</p>
-                    <p>Históricos</p>
-                </div>
-            </div>
-        </>
+            <Footer />
+        </Container>
     )
 }
