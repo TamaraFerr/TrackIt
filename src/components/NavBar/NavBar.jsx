@@ -1,7 +1,7 @@
 import {Body, FotoPerfil} from "./Style"
 import UserContext from "../../context/UserContext"
 import { useContext } from "react"
-import Logo from "../../assets/Logo.png"
+import Logo from "../../assets/logo-mini.svg"
 
 export default function NavBar() {
     const {user} = useContext(UserContext)
