@@ -9,7 +9,7 @@ export default function NavBar() {
     return (
         <Body data-test="header">
             <img src={Logo} alt="logo-trackit"/>
-            <FotoPerfil src={user.image} alt="profile-pic"/>
+            <FotoPerfil src={user.image} alt="profile-pic" data-test="avatar"/>
         </Body>
     )
 }
