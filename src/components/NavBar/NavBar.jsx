@@ -7,9 +7,11 @@ export default function NavBar() {
     const {user} = useContext(UserContext)
 
     return (
-        <Body data-test="header">
-            <img src={Logo} alt="logo-trackit"/>
-            <FotoPerfil src={user.image} alt="profile-pic" data-test="avatar"/>
-        </Body>
+        <>
+            <Body data-test="header">
+                <img src={Logo} alt="logo-trackit"/>
+                <FotoPerfil src={user.image} alt="profile-pic" data-test="avatar"/>
+            </Body>
+        </>
     )
 }

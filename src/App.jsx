@@ -7,22 +7,26 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import "./styles/style.css"
 import { useState } from "react";
 import UserContext from "./context/UserContext"
+import ProgressoContext from "./context/ProgressoContext" 
  
 function App() {
-  const [user, setUser] = useState(undefined)
+  const [user, setUser] = useState({})
+  const [progresso, setProgresso] = useState(70)
 
   return (
-    <UserContext.Provider value={{user, setUser}}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />}/>
-          <Route path="/cadastro" element={<Cadastro />}/>
-          <Route path="/hoje" element={<Hoje />}/>
-          <Route path="/habitos" element={<Habitos />}/>
-          <Route path="/historico" element={<Historico />}/>
-        </Routes>
-      </BrowserRouter>
-      </UserContext.Provider>
+    <BrowserRouter>
+      <ProgressoContext.Provider value={{progresso, setProgresso}}>
+        <UserContext.Provider value={{user, setUser}}>
+            <Routes>
+              <Route path="/" element={<Login />}/>
+              <Route path="/cadastro" element={<Cadastro />}/>
+              <Route path="/hoje" element={<Hoje />}/>
+              <Route path="/habitos" element={<Habitos />}/>
+              <Route path="/historico" element={<Historico />}/>
+            </Routes>
+        </UserContext.Provider>
+      </ProgressoContext.Provider>
+    </BrowserRouter>
   )
 }
 

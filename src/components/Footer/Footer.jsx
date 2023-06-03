@@ -2,18 +2,22 @@ import {CircularProgressbar, CircularProgressbarWithChildren, buildStyles} from 
 import "react-circular-progressbar/dist/styles.css"
 import { Link } from "react-router-dom"
 import {FooterContainer, Links, ProgressBarr} from "./Style"
+import ProgressoContext from "../../context/ProgressoContext"
+import { useContext } from "react"
 
 export default function Footer() {
+    const {progresso} = useContext(ProgressoContext)
+
     return (
         <FooterContainer data-test="menu">
             <Link to={`/habitos`}>
                 <Links data-test="habit-link">Hábitos</Links>
             </Link>
 
-            <ProgressBarr>
-                <Link to={`/hoje`}>
-                    <CircularProgressbar data-test="today-link" 
-                        value=""
+            <Link to={`/hoje`}>
+                <ProgressBarr>
+                    <CircularProgressbar data-test="today-link"
+                        value={progresso}
                         text="Hoje"
                         background
                         backgroundPadding={6}
@@ -28,8 +32,8 @@ export default function Footer() {
                             })
                         }
                     />
-                </Link>
-            </ProgressBarr>
+                </ProgressBarr>
+            </Link>
 
             <Link to={`/historico`}>
                 <Links data-test="history-link">Histórico</Links>
