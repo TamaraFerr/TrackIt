@@ -15,8 +15,8 @@ export default function Footer() {
             </Link>
 
             <Link to={`/hoje`}>
-                <ProgressBarr>
-                    <CircularProgressbar data-test="today-link"
+                <ProgressBarr data-test="today-link">
+                    <CircularProgressbar
                         value={progresso}
                         text="Hoje"
                         background
