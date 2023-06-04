@@ -28,6 +28,8 @@ export default function Login(){
                 window.localStorage.setItem("token", res.data.token)
                 setUser(res.data)
                 navigate(`/hoje`)
+                setDisabled(false)
+                
             })
             .catch((err) => 
                 alert(err.response.data.message),
