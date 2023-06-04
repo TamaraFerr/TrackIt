@@ -19,7 +19,6 @@ export default function Login(){
 
     function LoadPage(e) {
         e.preventDefault()
-        setDisabled(true)
         console.log(disabled)
 
         axios
@@ -34,6 +33,7 @@ export default function Login(){
                 alert(err.response.data.message),
                 setDisabled(false))
         
+        setDisabled(true)
     }
 
     return (

@@ -17,7 +17,6 @@ export default function Cadastro() {
 
     function SingUp(e) {
         e.preventDefault()
-        setIsLoading(true)
         console.log(form)
         const body = {...form}
         
@@ -31,6 +30,8 @@ export default function Cadastro() {
             .catch((err) => 
                 alert(err.response.data),
                 setIsLoading(false))
+
+        setIsLoading(true)
     }
 
     return (
