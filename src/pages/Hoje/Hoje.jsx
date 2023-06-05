@@ -1,9 +1,28 @@
 import NavBarr from "../../components/NavBar/NavBar"
 import Footer from "../../components/Footer/Footer"
-import {Container, TodayContainer, Texts, HabbitRecords, ProgressHabbit, Sequence, Record, TodayRecords, HabbitRecords2} from "./Style"
-import {BsFillCheckSquareFill} from "react-icons/bs"
+import {Container, TodayContainer, ProgressHabbit} from "./Style"
+import Recordes from "./Recordes"
+import { useContext, useEffect, useState } from "react"
+import axiosAuthorized from "../../constants/axiosAuthorized"
+import UserContext from "../../context/UserContext"
 
 export default function Hoje(){
+    const [habitos, setHabitos] = useState([])
+    const {user} = useContext(UserContext)
+
+    useEffect(habitosHoje, [])
+
+    function habitosHoje(){
+        axiosAuthorized()
+            .get(`habits/today`, user.token)
+            .then(res => {
+                setHabitos(res.data)
+            })
+            .catch((err) => {
+                alert(err.response.data.message)
+            })
+    }
+
     return (
         <Container>
             <NavBarr />
@@ -13,25 +32,22 @@ export default function Hoje(){
                     <p data-test="today-counter">Nenhum hábito concluído ainda</p>
                 </ProgressHabbit>
 
-                <TodayRecords>
-                    <HabbitRecords data-test="today-habit-container">
-                        <Texts>
-                            <h2 data-test="today-habit-name">Hábito criado agora</h2>
-                            <p data-test="today-habit-sequence">Sequência atual: <Sequence>5 dias</Sequence></p>
-                            <p data-test="today-habit-record">Seu recorde: <Record>5 dias</Record></p>
-                        </Texts>
-                        <BsFillCheckSquareFill data-test="today-habit-check-btn"/>
-                    </HabbitRecords>
 
-                    <HabbitRecords2 data-test="today-habit-container">
-                        <Texts>
-                            <h2 data-test="today-habit-name">Hábito criado agora</h2>
-                            <p data-test="today-habit-sequence">Sequência atual: <span>5 dias</span></p>
-                            <p data-test="today-habit-record">Seu recorde: <span>4 dias</span></p>
-                        </Texts>
-                        <BsFillCheckSquareFill data-test="today-habit-check-btn"/>
-                    </HabbitRecords2>
-                </TodayRecords>
+                {habitos.length === 0 ? (
+                    "Carregando..."
+                ) : (
+                    habitos.map(hab => (
+                        <Recordes
+                            key={hab.id}
+                            id={hab.id}
+                            name={hab.name}
+                            done={hab.done}
+                            currentSequence={hab.currentSequence}
+                            highestSequence={hab.highestSequence}
+                        />
+                    ))
+                )}
+                
             </TodayContainer>
 
             <Footer />

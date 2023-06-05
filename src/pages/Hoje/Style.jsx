@@ -2,12 +2,14 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     background-color:  #E5E5E5;
-    height: 100vh;
+    height: 100%;
     width: 100%;
 `
 export const TodayContainer = styled.div`
     box-sizing: border-box;
     padding-top: 130px;
+    padding-bottom: 100px;
+    height: 100vh;
 `
 
 export const ProgressHabbit = styled.div`
@@ -27,26 +29,6 @@ export const TodayRecords = styled.div`
 `
 
 export const HabbitRecords = styled.div`
-    box-sizing: border-box;
-    width: 340px;
-    height: 94px;
-    border-radius: 5px;
-    background-color: #ffffff;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    && svg {
-        font-size: 69px;
-        height: 69px;
-        color: #EBEBEB;
-        border: 1px solid #EBEBEB;
-        border-radius: 5px;
-        margin-right: 13px;
-    }
-`
-export const HabbitRecords2 = styled.div`
     box-sizing: border-box;
     width: 340px;
     height: 94px;

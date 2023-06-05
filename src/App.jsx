@@ -11,7 +11,7 @@ import ProgressoContext from "./context/ProgressoContext"
  
 function App() {
   const [user, setUser] = useState({})
-  const [progresso, setProgresso] = useState(70)
+  const [progresso, setProgresso] = useState(0)
 
   return (
     <BrowserRouter>
