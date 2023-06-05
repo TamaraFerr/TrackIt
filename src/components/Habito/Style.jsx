@@ -44,7 +44,7 @@ export const DaysButtons = styled.div`
 
 export const DayButton = styled.button`
     border: ${(props) => props.selecionado ? "1px solid #CFCFCF" : "1px solid #D5D5D5"};
-    background-color: ${(props) => props.selecionado ? "#CFCFCF" : "#ffffff"};
+    background-color: ${(props) => props.selecionado ? "#CFCFCF" : "#FFFFFF"};
     border-radius: 5px;
     width: 30px;
     height: 30px;

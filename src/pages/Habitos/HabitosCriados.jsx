@@ -28,8 +28,10 @@ export default function  HabitosCriados() {
             {habitos.map( hab => (
                 <HabitoCriado
                     key={hab.id}
+                    id={hab.id}
                     name={hab.name}
                     days={hab.days}
+                    HabitosVisiveis={HabitosVisiveis}
                 />
             ))}
         </>
