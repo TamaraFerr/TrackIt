@@ -1,7 +1,7 @@
 import axios from "axios"
 import { BASE_URL } from "./url"
 
-export const axiosAuthorized = () => {
+const axiosAuthorized = () => {
     const token = window.localStorage.getItem("token")
 
     return axios.create({   
@@ -9,3 +9,5 @@ export const axiosAuthorized = () => {
         baseURL: BASE_URL, 
     })
 }
+
+export default axiosAuthorized

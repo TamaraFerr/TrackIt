@@ -1,10 +1,14 @@
 import NavBar from "../../components/NavBar/NavBar"
 import Footer from "../../components/Footer/Footer"
 import CriarHabito from "./CriarHabito"
-import HabitoCriado from "./HabitoCriado"
+import HabitosCriados from "./HabitosCriados"
 import {Container, HabitosContainer, CreateHabbit, Text} from "./Style"
 import { BsFillPlusSquareFill } from "react-icons/bs"
 import { useState } from "react"
+import { useEffect } from "react"
+import axiosAuthorized from "../../constants/axiosAuthorized"
+import { useContext } from "react"
+import UserContext from "../../context/UserContext"
 
 export default function Habitos(){
     const [showForm, setShowForm] = useState(false)
@@ -12,6 +16,8 @@ export default function Habitos(){
     const toggleForm = () => {
         setShowForm(!showForm)
     }
+
+
 
     return (
         <Container>
@@ -24,7 +30,7 @@ export default function Habitos(){
 
                 {showForm && <CriarHabito />}
 
-                <HabitoCriado />
+                <HabitosCriados />
                 
                 <Text>
                      <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>

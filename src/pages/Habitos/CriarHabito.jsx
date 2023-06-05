@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { axiosAuthorized } from "../../constants/axiosAuthorized"
+import axiosAuthorized from "../../constants/axiosAuthorized"
 import {HabbitContainer, Save, Cancel, Input, DayButton, DaysButtons, Buttons} from "./Style"
 import { ThreeDots } from "react-loader-spinner"
 
@@ -26,7 +26,6 @@ export default function CriandoHabito() {
     function createHabit(e){
         e.preventDefault()
         const data = { name: name, days: arrayDias }
-        setDisabled(true)
 
         axiosAuthorized()
             .post(`/habits`, data)
@@ -35,9 +34,11 @@ export default function CriandoHabito() {
                 setDisabled(false)
             })
             .catch((err) => {
-                alert(err.reponse.data.messege)
+                alert(err.response.data.messege)
                 setDisabled(false)
             })
+
+        setDisabled(true)
     }
 
     return (
