@@ -42,7 +42,7 @@ export default function CriandoHabito() {
     }
 
     return (
-        <HabbitContainer data-test="habit-create-container" onSubmit={createHabit}>
+        <HabbitContainer data-test="habit-create-container" onSubmit={createHabit} >
             <Input 
                 placeholder="nome do hábito" 
                 data-test="habit-name-input"

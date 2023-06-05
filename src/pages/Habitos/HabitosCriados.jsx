@@ -5,35 +5,10 @@ import { useState, useEffect } from "react"
 import HabitoCriado from "../../components/Habito/HabitoCriado"
 
 export default function  HabitosCriados() {
-    const [habitos, setHabitos] = useState([])
-    const {user} = useContext(UserContext)
-
-    useEffect(HabitosVisiveis, [])
-
-    function HabitosVisiveis(){
-
-        axiosAuthorized()
-            .get(`habits`)
-            .then((res) => {
-                console.log(res.data)
-                setHabitos(res.data)
-            })
-            .catch((err) => {
-                alert(err.responde.data.message)
-            })
-    }
-
+   
     return (
         <>
-            {habitos.map( hab => (
-                <HabitoCriado
-                    key={hab.id}
-                    id={hab.id}
-                    name={hab.name}
-                    days={hab.days}
-                    HabitosVisiveis={HabitosVisiveis}
-                />
-            ))}
+            
         </>
     )
 }

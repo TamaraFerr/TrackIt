@@ -1,7 +1,7 @@
 import NavBar from "../../components/NavBar/NavBar"
 import Footer from "../../components/Footer/Footer"
 import CriarHabito from "./CriarHabito"
-import HabitosCriados from "./HabitosCriados"
+import HabitoCriado from "../../components/Habito/HabitoCriado"
 import {Container, HabitosContainer, CreateHabbit, Text} from "./Style"
 import { BsFillPlusSquareFill } from "react-icons/bs"
 import { useState } from "react"
@@ -12,12 +12,28 @@ import UserContext from "../../context/UserContext"
 
 export default function Habitos(){
     const [showForm, setShowForm] = useState(false)
+    const [habitos, setHabitos] = useState([])
+    const {user} = useContext(UserContext)
+
 
     const toggleForm = () => {
         setShowForm(!showForm)
     }
 
+    useEffect(HabitosVisiveis, [])
 
+    function HabitosVisiveis(){
+
+        axiosAuthorized()
+            .get(`habits`)
+            .then((res) => {
+                console.log(res.data) 
+                setHabitos(res.data)
+            })
+            .catch((err) => {
+                alert(err.responde.data.message)
+            })
+    }
 
     return (
         <Container>
@@ -30,11 +46,22 @@ export default function Habitos(){
 
                 {showForm && <CriarHabito />}
 
-                <HabitosCriados />
+                {habitos.length === 0 ? (
+                    <Text>
+                        <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
+                    </Text>
+                ) : (
+                    habitos.map( hab => (
+                        <HabitoCriado
+                            key={hab.id}
+                            id={hab.id}
+                            name={hab.name}
+                            days={hab.days}
+                            HabitosVisiveis={HabitosVisiveis}
+                            />
+                    ))
+                )}
                 
-                <Text>
-                     <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
-                </Text>
             </HabitosContainer>
 
             <Footer />
